@@ -70,4 +70,21 @@ public class Traverse {
     v23.neighbors = new ArrayList<>(List.of());
     v67.neighbors = new ArrayList<>(List.of(v91));
   }
+
+  public static void printGossipers(Person confider) {
+    Set<Person> visited = new HashSet<>();
+    printGossipers(confider, visited);
+  }
+
+  private static void printGossipers(Person current, Set<Person> visited) {
+    if (current == null || visited.contains(current)) return;
+    visited.add(current);
+    System.out.println(current.getName());
+
+    // Explore all confidants
+
+    for (Person confidant : current.getConfidants()) {
+      printGossipers(confidant, visited);
+    }
+  }
 }
